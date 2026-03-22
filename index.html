@@ -6,15 +6,15 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: transparent;
+    background: #2b3544;
     font-family: Georgia, 'Times New Roman', serif;
-    padding: 4px 0 6px;
+    padding: 4px 0 4px;
   }
   .box {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    min-height: 70px;
+    min-height: 0;
   }
   .glyph {
     font-size: 16px;
@@ -28,7 +28,7 @@
     color: #9ab8cc;
     font-style: italic;
     line-height: 1.7;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
   }
   .fact strong {
     font-style: normal;
@@ -65,8 +65,8 @@
       el.innerHTML = facts[i];
       el.style.opacity = '1';
       i = (i + 1) % facts.length;
-    }, 500);
-  }, 7000);
+    }, 300);
+  }, 4000);
 </script>
 </body>
 </html>
