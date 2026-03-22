@@ -1,57 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>The Eternal – Did You Know?</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    margin: 0;
-    background: #1a2433;
-    font-family: Georgia, serif;
+    background: transparent;
+    font-family: Georgia, 'Times New Roman', serif;
+    padding: 4px 0 6px;
   }
-  .marquee-y {
-    overflow: hidden;
-    height: 80px;
+  .box {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: 70px;
   }
-  .marquee-y-inner {
-    display: inline-flex;
-    flex-direction: column;
-    animation: marquee-y 6s linear infinite; /* fast */
+  .glyph {
+    font-size: 16px;
+    color: #4a88b8;
+    flex-shrink: 0;
+    line-height: 1.5;
+    opacity: 0.8;
   }
-  @keyframes marquee-y {
-    0%   { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+  .fact {
+    font-size: 12px;
+    color: #9ab8cc;
+    font-style: italic;
+    line-height: 1.7;
+    transition: opacity 0.5s ease;
+  }
+  .fact strong {
+    font-style: normal;
+    color: #d8eaf4;
+    font-weight: bold;
   }
 </style>
 </head>
 <body>
-<div class="marquee-y">
-  <div class="marquee-y-inner">
-    <div style="font-size: 13px; color: #d8eaf4; padding: 8px 10px; margin-bottom: 6px; background: #17202d; border-left: 2px solid #4a88b8;">
-      The number of possible chess games exceeds the atoms in the observable universe.
-      <span style="display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7a9aaa; margin-top: 4px;">— Shannon's Number</span>
-    </div>
-    <div style="font-size: 13px; color: #d8eaf4; padding: 8px 10px; margin-bottom: 6px; background: #17202d; border-left: 2px solid #4a88b8;">
-      The longest chess game theoretically possible is 5,949 moves.
-      <span style="display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7a9aaa; margin-top: 4px;">— Game Theory</span>
-    </div>
-    <div style="font-size: 13px; color: #d8eaf4; padding: 8px 10px; margin-bottom: 6px; background: #17202d; border-left: 2px solid #4a88b8;">
-      Chess was invented in India around the 6th century, originally called Chaturanga.
-      <span style="display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7a9aaa; margin-top: 4px;">— History</span>
-    </div>
-    <div style="font-size: 13px; color: #d8eaf4; padding: 8px 10px; margin-bottom: 6px; background: #17202d; border-left: 2px solid #4a88b8;">
-      "Checkmate" comes from the Persian Shah Mat — "the king is dead."
-      <span style="display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7a9aaa; margin-top: 4px;">— Etymology</span>
-    </div>
-    <div style="font-size: 13px; color: #d8eaf4; padding: 8px 10px; margin-bottom: 6px; background: #17202d; border-left: 2px solid #4a88b8;">
-      The first chess computer program was written in 1951 by Alan Turing.
-      <span style="display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7a9aaa; margin-top: 4px;">— History of Computing</span>
-    </div>
-    <div style="font-size: 13px; color: #d8eaf4; padding: 8px 10px; margin-bottom: 6px; background: #17202d; border-left: 2px solid #4a88b8;">
-      There are 400 possible positions after each player makes just one move.
-      <span style="display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7a9aaa; margin-top: 4px;">— Combinatorics</span>
-    </div>
-  </div>
+<div class="box">
+  <div class="glyph">♟</div>
+  <div class="fact" id="fact"></div>
 </div>
+<script>
+  const facts = [
+    "The <strong>knight</strong> is the only chess piece that can leap over other pieces — a true rule-breaker.",
+    "The word <strong>checkmate</strong> comes from the Persian <em>shāh māt</em> — meaning 'the king is helpless.'",
+    "There are more possible chess games than <strong>atoms in the observable universe</strong>.",
+    "The first <strong>chess computer program</strong> was written in 1951 by Alan Turing — by hand, on paper.",
+    "Chess originated in <strong>6th century India</strong> as <em>Chaturanga</em> — the four divisions of the military.",
+    "The <strong>queen</strong> only became the most powerful piece in the 15th century. Originally she moved just one square.",
+    "There are <strong>400 different positions</strong> possible after each player's first two moves.",
+    "The longest official chess game lasted <strong>269 moves</strong> — Nikolic vs. Arsovic, Belgrade, 1989.",
+    "A <strong>pawn</strong> that reaches the last rank can promote to any piece — even a second queen.",
+    "The <strong>Eternal</strong> — where every move echoes through time. ♟",
+  ];
+  let i = Math.floor(Math.random() * facts.length);
+  const el = document.getElementById('fact');
+  el.innerHTML = facts[i];
+  i = (i + 1) % facts.length;
+  setInterval(() => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      el.innerHTML = facts[i];
+      el.style.opacity = '1';
+      i = (i + 1) % facts.length;
+    }, 500);
+  }, 7000);
+</script>
 </body>
 </html>
